@@ -9,14 +9,14 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import axios from "axios";
 
-console.log("🚀 MCP GitHub Server Started");
+console.log(" MCP GitHub Server Started");
 
-// 🔐 Env variables
+//  Env variables
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const OWNER = process.env.GITHUB_OWNER;
 const REPO = process.env.GITHUB_REPO;
 
-// 🧠 Create MCP Server
+//  Create MCP Server
 const server = new Server(
   {
     name: "github-server",
@@ -31,7 +31,7 @@ const server = new Server(
 
 
 // ==========================
-// 🔹 TOOL LIST
+//  TOOL LIST
 // ==========================
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
@@ -72,15 +72,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 
 
 // ==========================
-// 🔹 TOOL EXECUTION
+//  TOOL EXECUTION
 // ==========================
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
 
   try {
-    // 🔹 1. List Repo Files
+    //  1. List Repo Files
     if (name === "listRepoFiles") {
-      console.log("📂 Tool called: listRepoFiles");
+      console.log(" Tool called: listRepoFiles");
 
       const res = await axios.get(
         `https://api.github.com/repos/${OWNER}/${REPO}/contents`,
@@ -103,9 +103,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
     }
 
-    // 🔹 2. Get File Content
+    //  2. Get File Content
     if (name === "getFileContent") {
-      console.log("📄 Tool called: getFileContent", args);
+      console.log(" Tool called: getFileContent", args);
 
       const res = await axios.get(
         `https://api.github.com/repos/${OWNER}/${REPO}/contents/${args.path}`,
@@ -128,9 +128,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
     }
 
-    // 🔹 3. Get Commits
+    //  3. Get Commits
     if (name === "getCommits") {
-      console.log("📝 Tool called: getCommits");
+      console.log(" Tool called: getCommits");
 
       const res = await axios.get(
         `https://api.github.com/repos/${OWNER}/${REPO}/commits`,
@@ -155,13 +155,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
     }
 
-    // ❌ Unknown tool
+    //  Unknown tool
     return {
       content: [{ type: "text", text: "Unknown tool" }],
     };
 
   } catch (error) {
-    console.error("❌ Error:", error.message);
+    console.error(" Error:", error.message);
 
     return {
       content: [
@@ -176,7 +176,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
 
 // ==========================
-// 🚀 START SERVER
+//  START SERVER
 // ==========================
 const transport = new StdioServerTransport();
 await server.connect(transport);
