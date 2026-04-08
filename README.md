@@ -12,6 +12,7 @@ This project starts a stdio-based MCP server in Node.js and exposes tools that c
 
 - Node.js 18+
 - A GitHub personal access token with access to the target repository
+- You can get the personal access token from the github -> userprofile-> settings -> developersetting-> fine grained token -> create token -> give access to the repo
 
 ## Installation
 
@@ -44,7 +45,7 @@ The server uses stdio transport, so it is intended to be launched by an MCP clie
 ## MCP Configuration
 
 This repository includes an MCP config file:
-
+create .mcp.json and include this code in the file
 ```json
 {
   "servers": {
