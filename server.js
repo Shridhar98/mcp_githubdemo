@@ -29,7 +29,6 @@ const server = new Server(
   }
 );
 
-
 // ==========================
 //  TOOL LIST
 // ==========================
@@ -69,7 +68,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     ],
   };
 });
-
 
 // ==========================
 //  TOOL EXECUTION
@@ -173,7 +171,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     };
   }
 });
-
 
 // ==========================
 //  START SERVER
